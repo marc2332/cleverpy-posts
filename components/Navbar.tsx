@@ -22,12 +22,19 @@ const ButtonsList = styled.div`
 
 export default function Navbar({ children }: PropsWithChildren) {
   const router = useRouter();
+  const isNotHome = router.pathname !== "/";
+
+  function goBack() {
+    if (isNotHome) {
+      router.back();
+    }
+  }
 
   function toggleTheme() {}
 
   return (
     <NavbarContainer>
-      <BigTitle onClick={router.back}>Posts</BigTitle>
+      <BigTitle onClick={goBack}>Posts</BigTitle>
       <ButtonsList>
         <Button onClick={toggleTheme}>
           <Moon />

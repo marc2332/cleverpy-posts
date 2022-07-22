@@ -8,6 +8,7 @@ export const BigTitle = styled.h1`
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   &:hover {
     color: rgb(80, 80, 80);
   }

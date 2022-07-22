@@ -1,13 +1,9 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import Button from "../../components/Button";
 import CenteredLayout from "../../components/CenteredLayout";
 import Navbar from "../../components/Navbar";
-import PostContent from "../../components/PostContent";
 import { SmallTitle } from "../../components/Title";
 import { StoreState } from "../../store/store";
-import Post from "../../types/posts";
 
 enum PostState {
   Loading,
@@ -32,24 +28,29 @@ export default function PostRoute() {
     }
   });
 
+  let content = (
+    <>
+      <SmallTitle>{post?.title}</SmallTitle>
+      <i>By {post?.userId}</i>
+      <p>{post?.body}</p>
+    </>
+  );
+
   // Post is not found
   if (state == PostState.Loaded && !post) {
-    return <p>not found</p>;
+    content = <p>not found</p>;
   }
 
   // Post is loading...
   if (state == PostState.Loading && !post) {
-    return <p>Loading..</p>;
+    content = <p>Loading..</p>;
   }
 
   return (
     <CenteredLayout>
       <main>
-        <PostContent>
-          <Navbar />
-          <SmallTitle>{post?.title}</SmallTitle>
-          <p>{post?.body}</p>
-        </PostContent>
+        <Navbar />
+        {content}
       </main>
     </CenteredLayout>
   );

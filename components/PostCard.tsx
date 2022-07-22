@@ -7,16 +7,17 @@ const Card = styled.div`
   color: black;
   width: 300px;
   height: 160px;
-  border: 1px solid transparent;
   border-radius: 10px;
   padding: 20px;
   transition: 0.1s;
   cursor: pointer;
   box-sizing: border-box;
   position: relative;
+  border: 1px solid rgb(230, 230, 230);
   &:hover {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgb(220, 220, 220);
+    border: 1px solid rgb(215, 215, 215);
+    -webkit-tap-highlight-color: transparent;
   }
 `;
 

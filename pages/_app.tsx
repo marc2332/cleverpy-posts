@@ -14,8 +14,8 @@ function PostsProvider({ children }: PropsWithChildren) {
     });
 
     // https://github.com/facebook/react/issues/17156
-    /*eslint-disable react-hooks/exhaustive-deps*/ 
-  }, []); 
+    /*eslint-disable react-hooks/exhaustive-deps*/
+  }, []);
 
   return <>{children}</>;
 }
