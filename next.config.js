@@ -2,6 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  compiler: {
+    styledComponents: true
+  },
+  experimental: {
+    scrollRestoration: true
+  }
 }
 
 module.exports = nextConfig
