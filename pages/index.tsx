@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "../components/Button";
 import CenteredLayout from "../components/CenteredLayout";
+import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
 import PostsList from "../components/PostsList";
-import Title from "../components/Title";
 import fetchPosts from "../services/fetchPosts";
 import { StoreState } from "../store/store";
 
@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <CenteredLayout>
       <main>
-        <Title>Posts</Title>
+        <Navbar/>
         <PostsList>
           {posts
             ? (

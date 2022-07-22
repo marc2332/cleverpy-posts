@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Button from "../../components/Button";
 import CenteredLayout from "../../components/CenteredLayout";
+import Navbar from "../../components/Navbar";
 import PostContent from "../../components/PostContent";
+import { SmallTitle } from "../../components/Title";
 import { StoreState } from "../../store/store";
 import Post from "../../types/posts";
 
@@ -44,10 +46,8 @@ export default function PostRoute() {
     <CenteredLayout>
       <main>
         <PostContent>
-          <Button onClick={router.back}>Go Back</Button>
-          <h1>
-            {post?.title}
-          </h1>
+          <Navbar/>
+          <SmallTitle>{post?.title}</SmallTitle>
           <p>{post?.body}</p>
         </PostContent>
       </main>

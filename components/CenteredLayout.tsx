@@ -4,9 +4,9 @@ const CenteredLayout = styled.div`
     display: flex;
     justify-content: center;
     & > main {
-        min-width: 650;
+        width: 650px;
         @media screen and (max-width: 720px) {
-            min-width: 300px;
+            width: 300px;
         }
     }
 `;
