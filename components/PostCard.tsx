@@ -15,7 +15,7 @@ const Card = styled.div`
   box-sizing: border-box;
   position: relative;
   &:hover {
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid rgb(220, 220, 220);
   }
 `;
@@ -29,7 +29,7 @@ const CardBody = styled.p`
   color: rgb(50, 50, 50);
   margin: 0px;
   overflow: hidden;
-  white-space: nowrap; 
+  white-space: nowrap;
   text-overflow: ellipsis;
 `;
 

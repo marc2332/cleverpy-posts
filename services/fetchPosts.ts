@@ -15,7 +15,7 @@ export default function fetchPosts(): Promise<Array<Post>> {
       res.map((post) => {
         return {
           ...post,
-          // Make the first of the title and body uppercase
+          // Make the capital first character of the title and body
           title: toUpperCaseFirstChar(post.title),
           body: toUpperCaseFirstChar(post.body),
         };

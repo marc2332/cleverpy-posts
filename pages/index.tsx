@@ -21,14 +21,12 @@ export default function Home() {
   return (
     <CenteredLayout>
       <main>
-        <Navbar/>
+        <Navbar />
         <PostsList>
           {posts
-            ? (
-              posts.length > 0
-                ? posts.map((post) => <PostCard key={post.id} {...post} />)
-                : "No posts :("
-            )
+            ? posts.length > 0
+              ? posts.map((post) => <PostCard key={post.id} {...post} />)
+              : "No posts :("
             : "Loading posts..."}
         </PostsList>
         <Button onClick={scrollToTop}>Scroll to top</Button>

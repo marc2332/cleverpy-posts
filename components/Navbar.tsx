@@ -7,24 +7,23 @@ import Button from "./Button";
 import { BigTitle } from "./Title";
 
 const NavbarContainer = styled.nav`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ButtonsList = styled.div`
-    display: flex;
-    align-items: center;
-    & > button {
-        display: inline-block;
-    }
+  display: flex;
+  align-items: center;
+  & > button {
+    display: inline-block;
+  }
 `;
 
 export default function Navbar({ children }: PropsWithChildren) {
   const router = useRouter();
 
-  function toggleTheme() {
-  }
+  function toggleTheme() {}
 
   return (
     <NavbarContainer>

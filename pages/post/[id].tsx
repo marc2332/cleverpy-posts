@@ -46,7 +46,7 @@ export default function PostRoute() {
     <CenteredLayout>
       <main>
         <PostContent>
-          <Navbar/>
+          <Navbar />
           <SmallTitle>{post?.title}</SmallTitle>
           <p>{post?.body}</p>
         </PostContent>

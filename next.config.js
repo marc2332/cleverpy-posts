@@ -3,11 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
-    styledComponents: true
+    styledComponents: true,
   },
   experimental: {
-    scrollRestoration: true
-  }
-}
+    scrollRestoration: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
