@@ -9,6 +9,7 @@ import LightTheme from "../themes/light";
 import DarkTheme from "../themes/dark";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const persistor = persistStore(store);
 
@@ -24,6 +25,7 @@ function getTheme(theme: Themes): typeof LightTheme | typeof DarkTheme {
 function PostsProvider({ children }: PropsWithChildren) {
   const dispatch = useDispatch();
   const theme = useSelector((state: StoreState) => state.theme.theme);
+  const selectedTheme = getTheme(theme);
 
   useEffect(() => {
     fetchPosts().then((posts) => {
@@ -34,13 +36,20 @@ function PostsProvider({ children }: PropsWithChildren) {
     /*eslint-disable react-hooks/exhaustive-deps*/
   }, []);
 
-  return <ThemeProvider theme={getTheme(theme)}>{children}</ThemeProvider>;
+  return (
+    <SkeletonTheme
+      baseColor={selectedTheme.skeleton.baseColor}
+      highlightColor={selectedTheme.skeleton.highlightColor}
+    >
+      <ThemeProvider theme={selectedTheme}>{children}</ThemeProvider>
+    </SkeletonTheme>
+  );
 }
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <PersistGate loading={<p>test</p>} persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <PostsProvider>
           <Component {...pageProps} />
         </PostsProvider>

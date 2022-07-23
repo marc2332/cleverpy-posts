@@ -8,9 +8,8 @@ const PostsList = styled.div`
     grid-template-columns: auto;
   }
   @media screen and (min-width: 720px) {
-    & > div:nth-child(1) {
+    & > *:nth-child(1) {
       grid-column: 1 / span 2;
-      max-width: 100%;
     }
   }
 `;

@@ -1,26 +1,36 @@
 import Link from "next/link";
-import styled from "styled-components";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import styled, { css } from "styled-components";
 import Post from "../types/posts";
 
-const Card = styled.div`
-  background: ${(theme) => theme.theme.card.background};
-  color: black;
+const CardBase = css`
+  border: 1px solid ${(theme) => theme.theme.card.border};
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px;
   max-width: 300px;
   height: 160px;
-  border-radius: 10px;
-  padding: 20px;
+  @media screen and (min-width: 720px) {
+    &:nth-child(1) {
+      max-width: 100%;
+    }
+  }
+  @media screen and (max-width: 720px) {
+    max-width: 320px;
+  }
+`;
+
+const Card = styled.div`
+  ${CardBase}
+  background: ${(theme) => theme.theme.card.background};
   transition: 0.1s;
   cursor: pointer;
-  box-sizing: border-box;
   position: relative;
-  border: 1px solid ${(theme) => theme.theme.card.border};
   &:hover {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid ${(theme) => theme.theme.card.hover.border};
     -webkit-tap-highlight-color: transparent;
-  }
-  @media screen and (max-width: 720px) {
-    max-width: 320px;
   }
 `;
 
@@ -56,3 +66,7 @@ export default function PostCard({ userId, id, title, body }: Post) {
     </Link>
   );
 }
+
+export const PostCardWithShimmer = styled(Skeleton)`
+  ${CardBase}
+`;

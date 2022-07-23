@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <NavbarContainer>
       <BigTitle onClick={goBack}>Posts</BigTitle>
-      <Button onClick={themeOnClick}>
+      <Button expanded={false} onClick={themeOnClick}>
         {selectedTheme === Themes.Dark ? (
           <Sun color={theme.icon.color} />
         ) : (

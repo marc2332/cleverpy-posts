@@ -4,6 +4,10 @@ declare module "styled-components" {
   export interface DefaultTheme {
     background: string;
     color: string;
+    skeleton: {
+      baseColor: string;
+      highlightColor: string;
+    };
     icon: {
       color: string;
     };

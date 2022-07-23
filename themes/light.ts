@@ -1,6 +1,10 @@
 const LightTheme = {
   background: "white",
   color: "rgb(20, 20, 20)",
+  skeleton: {
+    baseColor: "rgb(245, 245, 245)",
+    highlightColor: "rgb(230, 230, 230)",
+  },
   icon: {
     color: "black",
   },

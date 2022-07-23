@@ -1,6 +1,10 @@
 const DarkTheme = {
   background: "rgb(20, 20, 20)",
   color: "white",
+  skeleton: {
+    baseColor: "rgb(30, 30, 30)",
+    highlightColor: "rgb(45, 45, 45)",
+  },
   icon: {
     color: "white",
   },

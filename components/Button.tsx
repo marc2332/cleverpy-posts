@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+const Button = styled.button<{ expanded: boolean }>`
   border: none;
   background: ${({ theme }) => theme.button.background};
   color: ${({ theme }) => theme.button.color};
@@ -8,7 +8,7 @@ const Button = styled.button`
   outline: none;
   margin: 5px;
   padding: 7px 10px;
-  max-width: 100px;
+  ${({ expanded }) => !expanded && "max-width: 100px;"}
   height: 45px;
   display: flex;
   justify-content: center;
