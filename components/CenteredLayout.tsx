@@ -9,7 +9,7 @@ const CenteredLayout = styled.div`
   & > main {
     width: 630px;
     @media screen and (max-width: 720px) {
-      width: 300px;
+      width: 400px;
     }
   }
 `;

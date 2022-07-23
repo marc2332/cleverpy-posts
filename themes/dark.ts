@@ -11,7 +11,7 @@ const DarkTheme = {
     },
   },
   card: {
-    background: "rgb(35, 35, 35)",
+    background: "rgb(25, 25, 25)",
     title: {
       color: "white",
     },
@@ -21,13 +21,17 @@ const DarkTheme = {
     author: {
       color: "rgb(240,240,240)",
     },
-    border: "rgb(60, 60, 60)",
+    border: "rgb(45, 45, 45)",
     hover: {
       border: "rgb(80, 80, 80)",
     },
   },
   button: {
-    border: "rgb(50, 50, 50)",
+    border: "rgb(45, 45, 45)",
+    color: "white",
+    hover: {
+      border: "rgb(80, 80, 80)",
+    },
     background: "rgb(40, 40, 40)",
   },
 };

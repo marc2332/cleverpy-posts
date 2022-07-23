@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Button from "../components/Button";
 import CenteredLayout from "../components/CenteredLayout";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
 import PostsList from "../components/PostsList";
@@ -27,7 +28,9 @@ export default function Home() {
               : "No posts :("
             : "Loading posts..."}
         </PostsList>
-        <Button onClick={scrollToTop}>Scroll to top</Button>
+        <Footer>
+          <Button onClick={scrollToTop}>Scroll to top</Button>
+        </Footer>
       </main>
     </CenteredLayout>
   );

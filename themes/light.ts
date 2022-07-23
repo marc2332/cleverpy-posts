@@ -28,6 +28,10 @@ const LightTheme = {
   },
   button: {
     border: "rgb(230, 230, 230)",
+    color: "rgb(20, 20, 20)",
+    hover: {
+      border: "rgb(215, 215, 215)",
+    },
     background: "white",
   },
 };

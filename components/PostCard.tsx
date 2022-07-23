@@ -5,7 +5,7 @@ import Post from "../types/posts";
 const Card = styled.div`
   background: ${(theme) => theme.theme.card.background};
   color: black;
-  width: 300px;
+  max-width: 300px;
   height: 160px;
   border-radius: 10px;
   padding: 20px;
@@ -18,6 +18,9 @@ const Card = styled.div`
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid ${(theme) => theme.theme.card.hover.border};
     -webkit-tap-highlight-color: transparent;
+  }
+  @media screen and (max-width: 720px) {
+    max-width: 400px;
   }
 `;
 

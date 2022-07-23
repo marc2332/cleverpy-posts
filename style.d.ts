@@ -31,6 +31,10 @@ declare module "styled-components" {
     };
     button: {
       border: string;
+      color: string;
+      hover: {
+        border: string;
+      };
       background: string;
     };
   }
