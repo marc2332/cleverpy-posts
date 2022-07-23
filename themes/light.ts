@@ -5,6 +5,11 @@ const LightTheme = {
     baseColor: "rgb(245, 245, 245)",
     highlightColor: "rgb(230, 230, 230)",
   },
+  avatar: {
+    background: "rgb(50, 50, 50)",
+    border: "rgb(20, 20, 20)",
+    color: "white",
+  },
   loginButton: {
     border: "#ffa600",
     hover: {

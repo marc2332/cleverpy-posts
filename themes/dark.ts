@@ -5,6 +5,11 @@ const DarkTheme = {
     baseColor: "rgb(30, 30, 30)",
     highlightColor: "rgb(45, 45, 45)",
   },
+  avatar: {
+    background: "rgb(250, 250, 250)",
+    border: "rgb(230, 230, 230)",
+    color: "black",
+  },
   loginButton: {
     border: "#aa8d57",
     hover: {

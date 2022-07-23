@@ -6,9 +6,9 @@ const Avatar = styled.div`
   height: 25px;
   font-size: 18px;
   border-radius: 50px;
-  background: rgb(20, 20, 20);
-  color: white;
-  border: 1px solid rgb(50, 50, 50);
+  background: ${({ theme }) => theme.avatar.background};
+  color: ${({ theme }) => theme.avatar.color};
+  border: 1px solid ${({ theme }) => theme.avatar.border};
 `;
 
 export default Avatar;

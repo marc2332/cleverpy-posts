@@ -8,6 +8,11 @@ declare module "styled-components" {
       baseColor: string;
       highlightColor: string;
     };
+    avatar: {
+      background: string;
+      border: string;
+      color: string;
+    };
     loginButton: {
       border: string;
       hover: {

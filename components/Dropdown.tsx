@@ -25,13 +25,23 @@ const DropdownContainer = styled.div<{ x: number; y: number }>`
   border-radius: 14px;
   border: 1px solid ${({ theme }) => theme.dropdown.border};
   width: 200px;
-  height: 200px;
+  height: 220px;
   z-index: 1;
   & > * {
-    margin: 0px;
+    margin: 3px 0px;
   }
   & > button {
     max-height: 35px;
+  }
+  @media screen and (max-width: 720px) {
+    padding: 20px;
+    left: 10%;
+    top: 25%;
+    width: 80%;
+    height: 250px;
+    & > button {
+      margin: 5px 0px;
+    }
   }
 `;
 
@@ -50,6 +60,8 @@ export default function Dropdown({
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const isTouchDevice = "ontouchstart" in document.documentElement;
+
     const outsideClickListener = (ev: Event) => {
       if (ref.current && ev.target) {
         if (!ref.current.contains(ev.target as HTMLElement)) {
@@ -59,7 +71,11 @@ export default function Dropdown({
     };
 
     const resizeListener = () => {
-      close();
+      // Touchable devices will show the it's built-in keyboard causing the window to resize
+      // No need to close the dropdown if that's the case
+      if (!isTouchDevice) {
+        close();
+      }
     };
 
     window.addEventListener("resize", resizeListener);
@@ -69,7 +85,7 @@ export default function Dropdown({
       window.removeEventListener("resize", resizeListener);
       window.removeEventListener("mouseup", outsideClickListener);
     };
-  }, []);
+  }, [close]);
 
   return (
     <DropdownContainer x={x} y={y} ref={ref}>
