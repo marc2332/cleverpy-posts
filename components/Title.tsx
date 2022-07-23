@@ -9,6 +9,7 @@ export const BigTitle = styled.h1`
   white-space: nowrap;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  user-select: none;
   &:hover {
     color: ${(theme) => theme.theme.title.hover.color};
   }
