@@ -20,7 +20,7 @@ const Card = styled.div`
     -webkit-tap-highlight-color: transparent;
   }
   @media screen and (max-width: 720px) {
-    max-width: 400px;
+    max-width: 320px;
   }
 `;
 
