@@ -5,6 +5,12 @@ const LightTheme = {
     baseColor: "rgb(245, 245, 245)",
     highlightColor: "rgb(230, 230, 230)",
   },
+  loginButton: {
+    border: "#ffa600",
+    hover: {
+      background: "rgb(245, 245, 245)",
+    },
+  },
   icon: {
     color: "black",
   },
@@ -41,6 +47,18 @@ const LightTheme = {
   editarea: {
     background: "rgb(245, 245, 245)",
     outline: "rgba(220, 220, 220)",
+  },
+  dropdown: {
+    background: "rgb(250, 250, 250)",
+    border: "rgb(230, 230, 230)",
+  },
+  input: {
+    background: "white",
+    color: "rgb(20, 20, 20)",
+    border: "rgb(230, 230, 230)",
+    focus: {
+      border: "rgb(215, 215, 215)",
+    },
   },
 };
 

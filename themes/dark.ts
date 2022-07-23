@@ -5,6 +5,12 @@ const DarkTheme = {
     baseColor: "rgb(30, 30, 30)",
     highlightColor: "rgb(45, 45, 45)",
   },
+  loginButton: {
+    border: "#aa8d57",
+    hover: {
+      background: "rgb(30, 30, 30)",
+    },
+  },
   icon: {
     color: "white",
   },
@@ -41,6 +47,18 @@ const DarkTheme = {
   editarea: {
     background: "rgb(30, 30, 30)",
     outline: "rgb(60, 60, 60)",
+  },
+  dropdown: {
+    background: "rgb(20, 20, 20)",
+    border: "rgb(35, 35, 35)",
+  },
+  input: {
+    background: "rgb(40, 40, 40)",
+    color: "white",
+    border: "rgb(45, 45, 45)",
+    focus: {
+      border: "rgb(80, 80, 80)",
+    },
   },
 };
 

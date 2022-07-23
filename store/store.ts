@@ -47,6 +47,7 @@ const postsSlice = createSlice({
 
 export interface ConfigState {
   theme: Themes;
+  userId: string | null;
   editMode: boolean;
 }
 
@@ -54,6 +55,7 @@ const configSlice = createSlice({
   name: "config",
   initialState: {
     theme: Themes.Light,
+    userId: null,
     editMode: false,
   } as ConfigState,
   reducers: {
@@ -64,8 +66,11 @@ const configSlice = createSlice({
         state.theme = Themes.Dark;
       }
     },
-    setEditMode(state, { type, payload }: { type: string; payload: boolean }) {
+    setEditMode(state, { payload }: { type: string; payload: boolean }) {
       state.editMode = payload;
+    },
+    setUserId(state, { payload }: { type: string; payload: string | null }) {
+      state.userId = payload;
     },
   },
 });
@@ -100,4 +105,4 @@ const store = configureStore({
 
 export default store;
 export const { loadPosts, removePost, setPost } = postsSlice.actions;
-export const { toggleTheme, setEditMode } = configSlice.actions;
+export const { toggleTheme, setEditMode, setUserId } = configSlice.actions;

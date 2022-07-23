@@ -8,6 +8,12 @@ declare module "styled-components" {
       baseColor: string;
       highlightColor: string;
     };
+    loginButton: {
+      border: string;
+      hover: {
+        background: string;
+      };
+    };
     icon: {
       color: string;
     };
@@ -44,6 +50,18 @@ declare module "styled-components" {
     editarea: {
       background: string;
       outline: string;
+    };
+    dropdown: {
+      background: string;
+      border: string;
+    };
+    input: {
+      background: string;
+      color: string;
+      border: string;
+      focus: {
+        border: string;
+      };
     };
   }
 }

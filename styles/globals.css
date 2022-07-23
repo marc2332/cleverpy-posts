@@ -12,6 +12,10 @@ body,
   font-family: var(--font);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   overflow-y: scroll;
 }

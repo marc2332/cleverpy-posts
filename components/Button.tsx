@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 const Button = styled.button<{ expanded: boolean }>`
+  position: relative;
   border: none;
   background: ${({ theme }) => theme.button.background};
   color: ${({ theme }) => theme.button.color};
   border: 1px solid ${({ theme }) => theme.button.border};
   outline: none;
   margin: 5px;
-  padding: 7px 10px;
+  padding: 10px 10px;
   ${({ expanded }) => !expanded && "max-width: 100px;"}
-  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
