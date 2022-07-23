@@ -4,7 +4,7 @@ import { PropsWithChildren, useEffect } from "react";
 import fetchPosts from "../services/fetchPosts";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store, { loadPosts, StoreState, Themes } from "../store/store";
-import { ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import LightTheme from "../themes/light";
 import DarkTheme from "../themes/dark";
 import { PersistGate } from "redux-persist/integration/react";
@@ -21,6 +21,12 @@ function getTheme(theme: Themes): typeof LightTheme | typeof DarkTheme {
       return LightTheme;
   }
 }
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.background};
+  }
+`;
 
 function PostsProvider({ children }: PropsWithChildren) {
   const dispatch = useDispatch();
@@ -41,7 +47,10 @@ function PostsProvider({ children }: PropsWithChildren) {
       baseColor={selectedTheme.skeleton.baseColor}
       highlightColor={selectedTheme.skeleton.highlightColor}
     >
-      <ThemeProvider theme={selectedTheme}>{children}</ThemeProvider>
+      <ThemeProvider theme={selectedTheme}>
+        <GlobalStyle />
+        {children}
+      </ThemeProvider>
     </SkeletonTheme>
   );
 }
