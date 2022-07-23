@@ -24,7 +24,7 @@ function getTheme(theme: Themes): typeof LightTheme | typeof DarkTheme {
 
 function PostsProvider({ children }: PropsWithChildren) {
   const dispatch = useDispatch();
-  const theme = useSelector((state: StoreState) => state.theme.theme);
+  const theme = useSelector((state: StoreState) => state.config.theme);
   const selectedTheme = getTheme(theme);
 
   useEffect(() => {

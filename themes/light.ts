@@ -38,6 +38,10 @@ const LightTheme = {
     },
     background: "white",
   },
+  editarea: {
+    background: "rgb(240, 240, 240)",
+    outline: "rgba(220, 220, 220)",
+  },
 };
 
 export default LightTheme;

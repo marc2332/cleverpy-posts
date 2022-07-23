@@ -19,6 +19,7 @@ const Message = styled.div`
 
 export const MessageText = styled.span`
   color: ${({ theme }) => theme.color};
+  margin-bottom: 10px;
   text-align: center;
 `;
 

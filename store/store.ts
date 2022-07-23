@@ -29,18 +29,33 @@ const postsSlice = createSlice({
     loadPosts(state, action: { type: string; payload: Post[] }) {
       state.posts = action.payload;
     },
+    removePost(state, action: { type: string; payload: number }) {
+      if (state.posts) {
+        state.posts = state.posts?.filter((post) => post.id !== action.payload);
+      }
+    },
+    setPost(state, action: { type: string; payload: Post }) {
+      state.posts?.forEach((post) => {
+        if (post.id === action.payload.id) {
+          post.body = action.payload.body;
+          post.title = action.payload.title;
+        }
+      });
+    },
   },
 });
 
-export interface ThemeState {
+export interface ConfigState {
   theme: Themes;
+  editMode: boolean;
 }
 
-const themeSlice = createSlice({
-  name: "theme",
+const configSlice = createSlice({
+  name: "config",
   initialState: {
     theme: Themes.Light,
-  } as ThemeState,
+    editMode: false,
+  } as ConfigState,
   reducers: {
     toggleTheme(state) {
       if (state.theme == Themes.Dark) {
@@ -48,6 +63,9 @@ const themeSlice = createSlice({
       } else {
         state.theme = Themes.Dark;
       }
+    },
+    setEditMode(state, { type, payload }: { type: string; payload: boolean }) {
+      state.editMode = payload;
     },
   },
 });
@@ -57,17 +75,17 @@ const persistedReducer = persistReducer(
     key: "config",
     storage,
   },
-  themeSlice.reducer
+  configSlice.reducer
 );
 
 const reducer = combineReducers({
   posts: postsSlice.reducer,
-  theme: persistedReducer,
+  config: persistedReducer,
 });
 
 export interface StoreState {
   posts: PostsState;
-  theme: ThemeState;
+  config: ConfigState;
 }
 
 const store = configureStore({
@@ -81,5 +99,5 @@ const store = configureStore({
 });
 
 export default store;
-export const { loadPosts } = postsSlice.actions;
-export const { toggleTheme } = themeSlice.actions;
+export const { loadPosts, removePost, setPost } = postsSlice.actions;
+export const { toggleTheme, setEditMode } = configSlice.actions;

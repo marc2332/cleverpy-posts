@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import { Moon, Sun } from "react-feather";
+import { Edit, Moon, Sun, X } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
 import Button from "./Button";
 import { BigTitle } from "./Title";
-import { StoreState, Themes, toggleTheme } from "../store/store";
+import { setEditMode, StoreState, Themes, toggleTheme } from "../store/store";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -12,10 +12,16 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
 `;
 
+const ButtonsList = styled.nav`
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+`;
+
 export default function Navbar() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const selectedTheme = useSelector((state: StoreState) => state.theme.theme);
+  const config = useSelector((state: StoreState) => state.config);
   const theme = useTheme();
 
   const isNotHome = router.pathname !== "/";
@@ -30,16 +36,29 @@ export default function Navbar() {
     dispatch(toggleTheme());
   }
 
+  function enableEditMode() {
+    dispatch(setEditMode(!config.editMode));
+  }
+
   return (
     <NavbarContainer>
       <BigTitle onClick={goBack}>Posts</BigTitle>
-      <Button expanded={false} onClick={themeOnClick}>
-        {selectedTheme === Themes.Dark ? (
-          <Sun color={theme.icon.color} />
-        ) : (
-          <Moon color={theme.icon.color} />
-        )}
-      </Button>
+      <ButtonsList>
+        <Button expanded={false} onClick={themeOnClick}>
+          {config.theme === Themes.Dark ? (
+            <Sun color={theme.icon.color} />
+          ) : (
+            <Moon color={theme.icon.color} />
+          )}
+        </Button>
+        <Button expanded={false} onClick={enableEditMode}>
+          {config.editMode ? (
+            <X color={theme.icon.color} />
+          ) : (
+            <Edit color={theme.icon.color} />
+          )}
+        </Button>
+      </ButtonsList>
     </NavbarContainer>
   );
 }

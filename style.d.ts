@@ -41,5 +41,9 @@ declare module "styled-components" {
       };
       background: string;
     };
+    editarea: {
+      background: string;
+      outline: string;
+    };
   }
 }

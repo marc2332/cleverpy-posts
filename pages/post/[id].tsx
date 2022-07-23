@@ -1,9 +1,15 @@
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../components/Button";
 import CenteredLayout from "../../components/CenteredLayout";
+import EditArea from "../../components/EditArea";
+import Message, { MessageText } from "../../components/Message";
 import Navbar from "../../components/Navbar";
+import PostContent from "../../components/PostContent";
 import { SmallTitle } from "../../components/Title";
-import { StoreState } from "../../store/store";
+import { setPost, StoreState } from "../../store/store";
+import Post from "../../types/posts";
 
 enum PostState {
   Loading,
@@ -11,39 +17,87 @@ enum PostState {
 }
 
 export default function PostRoute() {
+  const isEditMode = useSelector((state: StoreState) => state.config.editMode);
   const router = useRouter();
-  const { id } = router.query;
+  const dispatch = useDispatch();
+  const [editedPost, setEditedPost] = useState<Post | null>(null);
 
   const { state, post } = useSelector((state: StoreState) => {
     if (!state.posts.posts) {
+      // Posts are still loading
       return {
         state: PostState.Loading,
         post: null,
       };
     } else {
+      // Posts are loaded
       return {
         state: PostState.Loaded,
-        post: state.posts.posts?.find((post) => post.id === Number(id)),
+        post: state.posts.posts?.find(
+          (post) => post.id === Number(router.query.id)
+        ),
       };
     }
   });
+
+  useEffect(() => {
+    if (post) {
+      setEditedPost(post);
+    }
+  }, [post]);
+
+  function contentEdited(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setEditedPost((post) => {
+      if (post) {
+        return {
+          ...post,
+          body: e.target.value,
+        };
+      } else {
+        return post;
+      }
+    });
+  }
+
+  function saveChanges() {
+    if (editedPost) {
+      dispatch(setPost(editedPost));
+    }
+  }
 
   let content = (
     <>
       <SmallTitle>{post?.title}</SmallTitle>
       <i>By {post?.userId}</i>
-      <p>{post?.body}</p>
+      {isEditMode ? (
+        <>
+          <EditArea defaultValue={editedPost?.body} onChange={contentEdited} />
+          <Button expanded={true} onClick={saveChanges}>
+            Save
+          </Button>
+        </>
+      ) : (
+        <PostContent>{post?.body}</PostContent>
+      )}
     </>
   );
 
   // Post is not found
   if (state == PostState.Loaded && !post) {
-    content = <p>not found</p>;
+    content = (
+      <Message>
+        <MessageText>Post not found.</MessageText>
+      </Message>
+    );
   }
 
   // Post is loading...
   if (state == PostState.Loading && !post) {
-    content = <p>Loading..</p>;
+    content = (
+      <Message>
+        <MessageText>Loading post...</MessageText>
+      </Message>
+    );
   }
 
   return (

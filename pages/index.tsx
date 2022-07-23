@@ -1,13 +1,18 @@
+import React from "react";
+import { Trash } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Button";
 import CenteredLayout from "../components/CenteredLayout";
 import Footer from "../components/Footer";
 import Message, { MessageText } from "../components/Message";
 import Navbar from "../components/Navbar";
-import PostCard, { PostCardWithShimmer } from "../components/PostCard";
+import PostCard, {
+  CardFloatingButton,
+  PostCardWithShimmer,
+} from "../components/PostCard";
 import PostsList from "../components/PostsList";
 import fetchPosts from "../services/fetchPosts";
-import { loadPosts, StoreState } from "../store/store";
+import { loadPosts, removePost, StoreState } from "../store/store";
 
 function ErrorMessage() {
   const dispatch = useDispatch();
@@ -33,13 +38,19 @@ function ErrorMessage() {
 }
 
 export default function Home() {
+  const dispatch = useDispatch();
   const posts = useSelector((state: StoreState) => state.posts.posts);
+  const isEditMode = useSelector((state: StoreState) => state.config.editMode);
 
   function scrollToTop() {
     window.scrollTo({
       behavior: "smooth",
       top: 0,
     });
+  }
+
+  function removePostById(postId: number) {
+    dispatch(removePost(postId));
   }
 
   return (
@@ -49,7 +60,26 @@ export default function Home() {
         <PostsList>
           {posts ? (
             posts.length > 0 ? (
-              posts.map((post) => <PostCard key={post.id} {...post} />)
+              posts.map((post) => {
+                function onClick(e: React.MouseEvent) {
+                  removePostById(post.id);
+                  e.preventDefault();
+                }
+
+                return (
+                  <PostCard
+                    key={post.id}
+                    {...post}
+                    floatingButton={
+                      isEditMode ? (
+                        <CardFloatingButton expanded={false} onClick={onClick}>
+                          <Trash />
+                        </CardFloatingButton>
+                      ) : null
+                    }
+                  />
+                );
+              })
             ) : (
               <ErrorMessage />
             )

@@ -38,6 +38,10 @@ const DarkTheme = {
     },
     background: "rgb(40, 40, 40)",
   },
+  editarea: {
+    background: "rgb(30, 30, 30)",
+    outline: "rgb(60, 60, 60)",
+  },
 };
 
 export default DarkTheme;

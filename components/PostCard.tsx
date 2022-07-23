@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Post from "../types/posts";
+import Button from "./Button";
 
 const CardBase = css`
   border: 1px solid ${(theme) => theme.theme.card.border};
@@ -13,7 +14,7 @@ const CardBase = css`
   height: 160px;
   @media screen and (min-width: 720px) {
     &:nth-child(1) {
-      max-width: 100%;
+      max-width: 630px;
     }
   }
   @media screen and (max-width: 720px) {
@@ -24,7 +25,7 @@ const CardBase = css`
 const Card = styled.div`
   ${CardBase}
   background: ${(theme) => theme.theme.card.background};
-  transition: 0.1s;
+  transition: box-shadow 0.1s, border 0.1s;
   cursor: pointer;
   position: relative;
   &:hover {
@@ -43,7 +44,6 @@ const CardBody = styled.p`
   color: ${(theme) => theme.theme.card.body.color};
   margin: 0px;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
@@ -55,17 +55,51 @@ const CardAuthor = styled.p`
   right: 20px;
 `;
 
-export default function PostCard({ userId, id, title, body }: Post) {
+interface CardOptions extends Post {
+  floatingButton: React.ReactElement | null;
+}
+
+export default function PostCard({
+  userId,
+  id,
+  title,
+  body,
+  floatingButton,
+}: CardOptions) {
   return (
     <Link href={`/post/${id}`} scroll={false}>
       <Card>
-        <CardTitle>{title}</CardTitle>
-        <CardBody>{body.split(" ").slice(0, 7).join(" ")}</CardBody>
-        <CardAuthor>{userId}</CardAuthor>
+        <CardTitle>{title.split(" ").slice(0, 7).join(" ")}</CardTitle>
+        <CardBody>{body.split(" ").slice(0, 12).join(" ")}</CardBody>
+        <CardAuthor>By {userId}</CardAuthor>
+        {floatingButton}
       </Card>
     </Link>
   );
 }
+
+export const ScalingAnimation = keyframes`
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+`;
+
+export const CardFloatingButton = styled(Button)`
+  animation: ${ScalingAnimation} ease-out 0.1s;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 50px;
+  &:active {
+    transform: scale(0.96);
+  }
+`;
 
 export const PostCardWithShimmer = styled(Skeleton)`
   ${CardBase}
