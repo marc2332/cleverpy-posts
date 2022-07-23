@@ -15,7 +15,7 @@ export default function PostRoute() {
   const { id } = router.query;
 
   const { state, post } = useSelector((state: StoreState) => {
-    if (!state.posts) {
+    if (!state.posts.posts) {
       return {
         state: PostState.Loading,
         post: null,
@@ -23,7 +23,7 @@ export default function PostRoute() {
     } else {
       return {
         state: PostState.Loaded,
-        post: state.posts?.find((post) => post.id === Number(id)),
+        post: state.posts.posts?.find((post) => post.id === Number(id)),
       };
     }
   });

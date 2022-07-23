@@ -2,12 +2,15 @@ import styled from "styled-components";
 
 const Button = styled.button`
   border: none;
-  background: white;
-  border: 1px solid rgb(230, 230, 230);
+  background: ${({ theme }) => theme.button.background};
+  border: 1px solid ${({ theme }) => theme.button.border};
   outline: none;
   padding: 7px 10px;
   max-width: 100px;
-  height: 50px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   cursor: pointer;
   transition: 0.2s;

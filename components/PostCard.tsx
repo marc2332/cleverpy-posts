@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Post from "../types/posts";
 
 const Card = styled.div`
-  background: white;
+  background: ${(theme) => theme.theme.card.background};
   color: black;
   width: 300px;
   height: 160px;
@@ -13,21 +13,21 @@ const Card = styled.div`
   cursor: pointer;
   box-sizing: border-box;
   position: relative;
-  border: 1px solid rgb(230, 230, 230);
+  border: 1px solid ${(theme) => theme.theme.card.border};
   &:hover {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgb(215, 215, 215);
+    border: 1px solid ${(theme) => theme.theme.card.hover.border};
     -webkit-tap-highlight-color: transparent;
   }
 `;
 
 const CardTitle = styled.h4`
-  color: rgb(50, 50, 50);
+  color: ${(theme) => theme.theme.card.title.color};
   margin: 0px;
 `;
 
 const CardBody = styled.p`
-  color: rgb(50, 50, 50);
+  color: ${(theme) => theme.theme.card.body.color};
   margin: 0px;
   overflow: hidden;
   white-space: nowrap;
@@ -36,7 +36,7 @@ const CardBody = styled.p`
 
 const CardAuthor = styled.p`
   position: absolute;
-  color: rgb(80, 80, 80);
+  color: ${(theme) => theme.theme.card.author.color};
   font-style: italic;
   bottom: 0px;
   right: 20px;

@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { PropsWithChildren } from "react";
-import { Moon } from "react-feather";
-import styled from "styled-components";
+import { Moon, Sun } from "react-feather";
+import { useDispatch, useSelector } from "react-redux";
+import styled, { useTheme } from "styled-components";
 import Button from "./Button";
 import { BigTitle } from "./Title";
+import { StoreState, Themes, toggleTheme } from "../store/store";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -12,16 +12,12 @@ const NavbarContainer = styled.nav`
   justify-content: space-between;
 `;
 
-const ButtonsList = styled.div`
-  display: flex;
-  align-items: center;
-  & > button {
-    display: inline-block;
-  }
-`;
-
-export default function Navbar({ children }: PropsWithChildren) {
+export default function Navbar() {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const selectedTheme = useSelector((state: StoreState) => state.theme.theme);
+  const theme = useTheme();
+
   const isNotHome = router.pathname !== "/";
 
   function goBack() {
@@ -30,16 +26,20 @@ export default function Navbar({ children }: PropsWithChildren) {
     }
   }
 
-  function toggleTheme() {}
+  function themeOnClick() {
+    dispatch(toggleTheme());
+  }
 
   return (
     <NavbarContainer>
       <BigTitle onClick={goBack}>Posts</BigTitle>
-      <ButtonsList>
-        <Button onClick={toggleTheme}>
-          <Moon />
-        </Button>
-      </ButtonsList>
+      <Button onClick={themeOnClick}>
+        {selectedTheme === Themes.Dark ? (
+          <Sun color={theme.icon.color} />
+        ) : (
+          <Moon color={theme.icon.color} />
+        )}
+      </Button>
     </NavbarContainer>
   );
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BigTitle = styled.h1`
-  color: rgb(50, 50, 50);
+  color: ${(theme) => theme.theme.title.color};
   font-size: 60px;
   margin: 50px 0px;
   overflow: hidden;
@@ -10,12 +10,12 @@ export const BigTitle = styled.h1`
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   &:hover {
-    color: rgb(80, 80, 80);
+    color: ${(theme) => theme.theme.title.hover.color};
   }
 `;
 
 export const SmallTitle = styled.h2`
-  color: rgb(50, 50, 50);
+  color: ${(theme) => theme.theme.title.color};
   font-size: 30px;
   margin: 25px 0px;
 `;

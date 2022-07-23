@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "../components/Button";
 import CenteredLayout from "../components/CenteredLayout";
 import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
 import PostsList from "../components/PostsList";
-import fetchPosts from "../services/fetchPosts";
 import { StoreState } from "../store/store";
 
 export default function Home() {
-  const posts = useSelector((state: StoreState) => state.posts);
+  const posts = useSelector((state: StoreState) => state.posts.posts);
 
   function scrollToTop() {
     window.scrollTo({

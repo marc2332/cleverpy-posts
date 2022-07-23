@@ -1,4 +1,3 @@
-import { title } from "process";
 import Post from "../types/posts";
 
 const API_URL = "https://jsonplaceholder.typicode.com/";
