@@ -39,7 +39,7 @@ const LightTheme = {
     background: "white",
   },
   editarea: {
-    background: "rgb(240, 240, 240)",
+    background: "rgb(245, 245, 245)",
     outline: "rgba(220, 220, 220)",
   },
 };

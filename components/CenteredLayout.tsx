@@ -3,7 +3,7 @@ import styled from "styled-components";
 const CenteredLayout = styled.div`
   background: ${(theme) => theme.theme.background};
   color: ${(theme) => theme.theme.color};
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   & > main {

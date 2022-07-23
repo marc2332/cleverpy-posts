@@ -13,6 +13,7 @@ const EditArea = styled.textarea`
   transition: 0.1s;
   resize: none;
   display: block;
+  font-size: 16px;
   &:focus {
     outline: 2px solid ${({ theme }) => theme.editarea.outline};
   }
