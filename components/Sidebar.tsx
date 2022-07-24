@@ -3,7 +3,7 @@ import Button, { ButtonWithIcon } from "./Button";
 
 const Sidebar = styled.div`
   display: flex;
-  align-items: start;
+  align-items: center;
   width: 60px;
   height: 100vh;
   margin-top: 215px;
@@ -15,8 +15,11 @@ const Sidebar = styled.div`
 
 export const SidebarButton = styled(Button)`
   margin: 3px 0px;
-  max-width: 50px;
-  max-height: 50px;
+  @media screen and (max-width: 720px) {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
 `;
 
 export default Sidebar;

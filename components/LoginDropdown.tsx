@@ -37,9 +37,9 @@ export function LoginDropdown({ x, y, close, logIn }: LoginDropdownOptions) {
   return (
     <Dropdown x={x} y={y} close={close}>
       <Label>User</Label>
-      <Input placeholder="UserID" onChange={onUserIdChanged}></Input>
+      <Input placeholder="UserID" onChange={onUserIdChanged}/>
       <Label>Password</Label>
-      <Input placeholder="Password"></Input>
+      <Input type="password"/>
       <Button expanded={true} onClick={logInOnClick}>
         Log in
       </Button>
