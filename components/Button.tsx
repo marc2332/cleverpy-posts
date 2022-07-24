@@ -17,6 +17,7 @@ const Button = styled.button<{ expanded: boolean }>`
   cursor: pointer;
   transition: 0.2s;
   border-radius: 7px;
+  -webkit-tap-highlight-color: transparent;
   &:hover {
     border: 1px solid ${({ theme }) => theme.button.hover.border};
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
