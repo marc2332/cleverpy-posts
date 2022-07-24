@@ -79,6 +79,8 @@ test("Should display a liked post", async ({ page }) => {
   // Open the post
   await postTitle.click();
 
+  await page.waitForNavigation();
+
   // Like the post
   await page.locator("button").nth(0).click();
 
