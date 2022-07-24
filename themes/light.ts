@@ -27,7 +27,10 @@ const LightTheme = {
   },
   smallTitle: {
     color: "rgb(50, 50, 50)",
-    border: "rgb(215, 215, 215)"
+    border: "rgb(215, 215, 215)",
+  },
+  filledStar: {
+    fill: "#f2a037",
   },
   card: {
     background: "white",

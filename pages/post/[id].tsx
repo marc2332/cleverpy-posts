@@ -1,15 +1,23 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Bookmark, Star } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import CenteredLayout from "../../components/CenteredLayout";
 import EditArea from "../../components/EditArea";
+import FilledStar from "../../components/FilledStar";
 import Label from "../../components/Label";
 import Message, { MessageText } from "../../components/Message";
 import Navbar from "../../components/Navbar";
 import PostContent from "../../components/PostContent";
+import Sidebar, { SidebarButton } from "../../components/Sidebar";
 import { SmallTitle } from "../../components/Title";
-import { setPost, StoreState } from "../../store/store";
+import {
+  markPostAsLiked,
+  setPost,
+  StoreState,
+  unmarkPostAsLiked,
+} from "../../store/store";
 import Post from "../../types/posts";
 
 enum PostState {
@@ -18,6 +26,9 @@ enum PostState {
 }
 
 export default function PostRoute() {
+  const likedPosts = useSelector(
+    (state: StoreState) => state.config.likedPosts
+  );
   const isEditMode = useSelector((state: StoreState) => state.config.editMode);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -41,6 +52,11 @@ export default function PostRoute() {
     }
   });
 
+  const isPostLiked = useMemo(() => {
+    if (!post) return false;
+    return likedPosts.hasOwnProperty(post.id);
+  }, [likedPosts, post]);
+
   useEffect(() => {
     if (post) {
       setEditedPost(post);
@@ -48,34 +64,36 @@ export default function PostRoute() {
   }, [post]);
 
   function titleEdited(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setEditedPost((post) => {
-      if (post) {
-        return {
-          ...post,
-          title: e.target.value,
-        };
-      } else {
-        return post;
-      }
+    if (!editedPost) return;
+    setEditedPost({
+      ...editedPost,
+      title: e.target.value,
     });
   }
 
   function contentEdited(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    setEditedPost((post) => {
-      if (post) {
-        return {
-          ...post,
-          body: e.target.value,
-        };
-      } else {
-        return post;
-      }
+    if (!editedPost) return;
+    setEditedPost({
+      ...editedPost,
+      body: e.target.value,
     });
   }
 
   function saveChanges() {
     if (editedPost) {
       dispatch(setPost(editedPost));
+    }
+  }
+
+  function likePost() {
+    if (post) {
+      dispatch(markPostAsLiked(post.id));
+    }
+  }
+
+  function unlikePost() {
+    if (post) {
+      dispatch(unmarkPostAsLiked(post.id));
     }
   }
 
@@ -129,6 +147,17 @@ export default function PostRoute() {
 
   return (
     <CenteredLayout>
+      <Sidebar>
+        <SidebarButton
+          expanded={false}
+          onClick={isPostLiked ? unlikePost : likePost}
+        >
+          {isPostLiked ? <FilledStar /> : <Star />}
+        </SidebarButton>
+        <SidebarButton expanded={false} onClick={() => alert("Not supported!")}>
+          <Bookmark />
+        </SidebarButton>
+      </Sidebar>
       <main>
         <Navbar />
         {content}

@@ -22,7 +22,7 @@ test("Should open a post", async ({ page }) => {
 
 async function logIn(page: Page) {
   // Enable edit mode
-  await page.locator("button").nth(0).click();
+  await page.locator("text=Login").click();
 
   // Edit the post
   await page.locator("input").nth(0).fill(USER_ID);
@@ -48,10 +48,10 @@ test("Should save an edited post", async ({ page }) => {
   await logIn(page);
 
   // Enable edit mode
-  await page.locator("button").nth(2).click();
+  await page.locator("button").nth(4).click();
 
-  // Edit the post
-  await page.locator("textarea").fill("Hello World");
+  // Edit the post content
+  await page.locator("textarea").nth(1).fill("Hello World");
 
   // Save the post
   await page.click("text=Save");
@@ -60,4 +60,37 @@ test("Should save an edited post", async ({ page }) => {
   await page.click("text=Posts");
 
   await expect(page.locator("p").nth(0)).toHaveText("Hello World");
+});
+
+test("Should display a liked post", async ({ page }) => {
+  await page.goto("http://localhost:3000");
+
+  await logIn(page);
+
+  const titles = await page.locator("h4");
+
+  const randomPost = Math.floor(Math.random() * (await titles.count()));
+
+  // Find a Card title
+  const postTitle = titles.nth(randomPost);
+
+  const title = await postTitle.innerText();
+
+  // Open the post
+  await postTitle.click();
+
+  // Like the post
+  await page.locator("button").nth(0).click();
+
+  // Open the account dropdown
+  await page.locator(`text=${`${USER_ID.charAt(0)}${USER_ID}`}`).click();
+
+  // Open the liked post route
+  await page.locator("text=Liked Posts").click();
+
+  await page.waitForNavigation();
+
+  await expect(page.url()).toBe("http://localhost:3000/likedPosts");
+
+  await expect(page.locator("h4").nth(0)).toHaveText(title);
 });

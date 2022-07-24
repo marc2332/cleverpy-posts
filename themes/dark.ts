@@ -27,7 +27,10 @@ const DarkTheme = {
   },
   smallTitle: {
     color: "white",
-    border: "rgb(35, 35, 35)"
+    border: "rgb(35, 35, 35)",
+  },
+  filledStar: {
+    fill: "#ecbe09",
   },
   card: {
     background: "rgb(25, 25, 25)",

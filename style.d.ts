@@ -32,6 +32,9 @@ declare module "styled-components" {
       color: string;
       border: string;
     };
+    filledStar: {
+      fill: string;
+    };
     card: {
       background: string;
       title: {

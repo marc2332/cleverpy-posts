@@ -8,7 +8,7 @@ import styled from "styled-components";
 const CenteredLabel = styled.p`
   text-align: center;
   font-size: 14px;
-`
+`;
 
 interface LoginDropdownOptions extends DropdownOptions {
   logIn: (userId: string) => void;
@@ -28,8 +28,10 @@ export function LoginDropdown({ x, y, close, logIn }: LoginDropdownOptions) {
     }
   }
 
-  function signUpOnClick(){
-    alert("No need! You can just log with any user or password, it's all fake.")
+  function signUpOnClick() {
+    alert(
+      "No need! You can just log with any user or password, it's all fake."
+    );
   }
 
   return (
@@ -41,9 +43,7 @@ export function LoginDropdown({ x, y, close, logIn }: LoginDropdownOptions) {
       <Button expanded={true} onClick={logInOnClick}>
         Log in
       </Button>
-      <CenteredLabel>
-        No account yet? Join!
-      </CenteredLabel>
+      <CenteredLabel>No account yet? Join!</CenteredLabel>
       <Button expanded={true} onClick={signUpOnClick}>
         Sign up
       </Button>

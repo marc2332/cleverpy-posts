@@ -47,6 +47,7 @@ const postsSlice = createSlice({
 
 export interface ConfigState {
   theme: Themes;
+  likedPosts: { [key: number]: null };
   userId: string | null;
   editMode: boolean;
 }
@@ -55,6 +56,7 @@ const configSlice = createSlice({
   name: "config",
   initialState: {
     theme: Themes.Dark,
+    likedPosts: {},
     userId: null,
     editMode: false,
   } as ConfigState,
@@ -71,6 +73,14 @@ const configSlice = createSlice({
     },
     setUserId(state, { payload }: { type: string; payload: string | null }) {
       state.userId = payload;
+    },
+    markPostAsLiked(state, { payload }: { type: string; payload: number }) {
+      state.likedPosts[payload] = null;
+    },
+    unmarkPostAsLiked(state, { payload }: { type: string; payload: number }) {
+      const likedPosts = { ...state.likedPosts };
+      delete likedPosts[payload];
+      state.likedPosts = likedPosts;
     },
   },
 });
@@ -105,4 +115,10 @@ const store = configureStore({
 
 export default store;
 export const { loadPosts, removePost, setPost } = postsSlice.actions;
-export const { toggleTheme, setEditMode, setUserId } = configSlice.actions;
+export const {
+  toggleTheme,
+  setEditMode,
+  setUserId,
+  markPostAsLiked,
+  unmarkPostAsLiked,
+} = configSlice.actions;

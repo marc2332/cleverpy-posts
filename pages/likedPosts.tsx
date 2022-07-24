@@ -1,5 +1,4 @@
 import React from "react";
-import { Trash } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Button";
 import CenteredLayout from "../components/CenteredLayout";
@@ -11,35 +10,33 @@ import PostCard, {
   PostCardWithShimmer,
 } from "../components/PostCard";
 import PostsList from "../components/PostsList";
-import fetchPosts from "../services/fetchPosts";
-import { loadPosts, removePost, StoreState } from "../store/store";
+import { removePost, StoreState, unmarkPostAsLiked } from "../store/store";
+import FilledStar from "../components/FilledStar";
+import Link from "next/link";
 
 function ErrorMessage() {
-  const dispatch = useDispatch();
-
-  function tryAgain() {
-    fetchPosts().then((posts) => {
-      dispatch(loadPosts(posts));
-    });
-  }
-
   return (
     <>
       <Message>
         <div>
-          <MessageText>No posts found</MessageText>
-          <Button onClick={tryAgain} expanded={true}>
-            Try again
-          </Button>
+          <MessageText>No posts liked</MessageText>
+          <Link href="/">
+            <Button expanded={true}>Go Home</Button>
+          </Link>
         </div>
       </Message>
     </>
   );
 }
 
-export default function Home() {
+export default function LikedPosts() {
   const dispatch = useDispatch();
-  const posts = useSelector((state: StoreState) => state.posts.posts);
+  const posts = useSelector((state: StoreState) => {
+    if (!state.posts.posts) return null;
+    return state.posts.posts?.filter((post) =>
+      state.config.likedPosts.hasOwnProperty(post.id)
+    );
+  });
   const isEditMode = useSelector((state: StoreState) => state.config.editMode);
 
   function scrollToTop() {
@@ -49,8 +46,8 @@ export default function Home() {
     });
   }
 
-  function removePostById(postId: number) {
-    dispatch(removePost(postId));
+  function unlikePost(postId: number) {
+    dispatch(unmarkPostAsLiked(postId));
   }
 
   return (
@@ -61,8 +58,8 @@ export default function Home() {
           {posts ? (
             posts.length > 0 ? (
               posts.map((post) => {
-                function onClick(e: React.MouseEvent) {
-                  removePostById(post.id);
+                function unlikeOnClick(e: React.MouseEvent) {
+                  unlikePost(post.id);
                   e.preventDefault();
                 }
 
@@ -72,9 +69,14 @@ export default function Home() {
                     {...post}
                     floatingButton={
                       isEditMode ? (
-                        <CardFloatingButton expanded={false} onClick={onClick}>
-                          <Trash />
-                        </CardFloatingButton>
+                        <div>
+                          <CardFloatingButton
+                            expanded={false}
+                            onClick={unlikeOnClick}
+                          >
+                            <FilledStar />
+                          </CardFloatingButton>
+                        </div>
                       ) : null
                     }
                   />

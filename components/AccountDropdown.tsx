@@ -2,7 +2,7 @@ import Button, { ButtonWithIcon } from "./Button";
 import React from "react";
 import Dropdown, { DropdownOptions } from "./Dropdown";
 import { useTheme } from "styled-components";
-import { LogOut } from "react-feather";
+import { LogOut, Star } from "react-feather";
 import Link from "next/link";
 
 interface AccountDropdownOptions extends DropdownOptions {
@@ -24,6 +24,12 @@ export function AccountDropdown({
 
   return (
     <Dropdown x={x} y={y} close={close}>
+      <Link href="/likedPosts">
+        <ButtonWithIcon expanded={true}>
+          <Star color={theme.icon.color} />
+          Liked Posts
+        </ButtonWithIcon>
+      </Link>
       <ButtonWithIcon expanded={true} onClick={logOutOnClick}>
         <LogOut color={theme.icon.color} />
         Sign out
