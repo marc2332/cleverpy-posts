@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Edit, LogIn, LogOut, Moon, Sun, X } from "react-feather";
+import { Edit, LogIn, Moon, Sun, X } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
 import Button from "./Button";
@@ -12,10 +12,9 @@ import {
   toggleTheme,
 } from "../store/store";
 import React, { useState } from "react";
-import Dropdown from "./Dropdown";
-import Input, { InputLabel } from "./Input";
-import Post from "../types/posts";
 import Avatar from "./Avatar";
+import { LoginDropdown } from "./LoginDropdown";
+import { AccountDropdown } from "./AccountDropdown";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -36,15 +35,14 @@ const LoginButton = styled(Button)`
     border-color: ${({ theme }) => theme.loginButton.border};
     background: ${({ theme }) => theme.loginButton.hover.background};
   }
-  & > svg {
-    margin-right: 10px;
-  }
+  & > svg,
   & .avatar {
-    margin-left: 10px;
+    margin-right: 10px;
   }
   @media screen and (max-width: 720px) {
     font-size: 0;
-    & > svg {
+    & > svg,
+    & .avatar {
       margin-right: 0px;
     }
   }
@@ -57,13 +55,11 @@ export default function Navbar() {
   const theme = useTheme();
 
   // Dropdown configuration
-  const [loginDropdown, setLoginDropdown] = useState<null | {
+  const [dropdown, setDropdown] = useState<null | {
     x: number;
     y: number;
+    kind: "login" | "account";
   }>(null);
-
-  // User login info
-  const [loginUserId, setLoginUserId] = useState<null | string>(null);
 
   const isNotHome = router.pathname !== "/";
 
@@ -85,26 +81,25 @@ export default function Navbar() {
     dispatch(setUserId(null));
   }
 
-  function logIn() {
-    dispatch(setUserId(loginUserId));
-    closeLoginDropdown();
+  function logIn(userId: string) {
+    dispatch(setUserId(userId));
+    closeDropdown();
   }
 
-  function showLoginDropdown(e: React.MouseEvent<HTMLButtonElement>) {
+  function showDropdown(
+    e: React.MouseEvent<HTMLButtonElement>,
+    kind: "login" | "account"
+  ) {
     const data = e.currentTarget.getBoundingClientRect();
-    setLoginDropdown({
+    setDropdown({
       x: data.x - 70,
       y: data.y + e.currentTarget.clientHeight + 5,
+      kind,
     });
   }
 
-  function closeLoginDropdown() {
-    setLoginDropdown(null);
-    setLoginUserId(null);
-  }
-
-  function onUserIdChanged(e: React.ChangeEvent<HTMLInputElement>) {
-    setLoginUserId(e.target.value);
+  function closeDropdown() {
+    setDropdown(null);
   }
 
   return (
@@ -112,13 +107,18 @@ export default function Navbar() {
       <BigTitle onClick={goBack}>Posts</BigTitle>
       <ButtonsList>
         {config.userId ? (
-          <LoginButton expanded={true} onClick={logOut}>
-            <LogOut color={theme.icon.color} />
-            Sign out
+          <LoginButton
+            expanded={true}
+            onClick={(e) => showDropdown(e, "account")}
+          >
             <Avatar className="avatar">{config.userId.charAt(0)}</Avatar>
+            {config.userId}
           </LoginButton>
         ) : (
-          <LoginButton expanded={false} onClick={showLoginDropdown}>
+          <LoginButton
+            expanded={false}
+            onClick={(e) => showDropdown(e, "login")}
+          >
             <LogIn color={theme.icon.color} />
             Login
           </LoginButton>
@@ -138,17 +138,17 @@ export default function Navbar() {
           )}
         </Button>
       </ButtonsList>
-      {loginDropdown && (
-        <Dropdown {...loginDropdown} close={closeLoginDropdown}>
-          <InputLabel>User</InputLabel>
-          <Input placeholder="UserID" onChange={onUserIdChanged}></Input>
-          <InputLabel>Password</InputLabel>
-          <Input placeholder="Password"></Input>
-          <Button expanded={true} onClick={logIn}>
-            Continue
-          </Button>
-        </Dropdown>
-      )}
+      {dropdown ? (
+        dropdown.kind === "login" ? (
+          <LoginDropdown {...dropdown} close={closeDropdown} logIn={logIn} />
+        ) : (
+          <AccountDropdown
+            {...dropdown}
+            close={closeDropdown}
+            logOut={logOut}
+          />
+        )
+      ) : null}
     </NavbarContainer>
   );
 }

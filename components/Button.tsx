@@ -23,4 +23,10 @@ const Button = styled.button<{ expanded: boolean }>`
   }
 `;
 
+export const ButtonWithIcon = styled(Button)`
+  & > svg {
+    margin-right: 10px;
+  }
+`;
+
 export default Button;

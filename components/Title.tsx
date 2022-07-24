@@ -14,7 +14,7 @@ export const BigTitle = styled.h1`
     color: ${(theme) => theme.theme.title.hover.color};
   }
   @media screen and (max-width: 720px) {
-    font-size: 45px;
+    font-size: 50px;
   }
 `;
 

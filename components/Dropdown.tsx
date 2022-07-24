@@ -25,8 +25,8 @@ const DropdownContainer = styled.div<{ x: number; y: number }>`
   border-radius: 14px;
   border: 1px solid ${({ theme }) => theme.dropdown.border};
   width: 200px;
-  height: 220px;
   z-index: 1;
+  box-shadow: 0px 5px 30px 15px rgba(0, 0, 0, 0.1);
   & > * {
     margin: 3px 0px;
   }
@@ -38,14 +38,13 @@ const DropdownContainer = styled.div<{ x: number; y: number }>`
     left: 10%;
     top: 25%;
     width: 80%;
-    height: 250px;
     & > button {
       margin: 5px 0px;
     }
   }
 `;
 
-interface DropdownOptions {
+export interface DropdownOptions {
   x: number;
   y: number;
   close: () => void;
