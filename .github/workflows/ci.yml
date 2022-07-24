@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install playwright
-      run: npx playwright install-deps
+      run: npx playwright install --with-deps
     - uses: borales/actions-yarn@v3.0.0
       with:
           cmd: install
