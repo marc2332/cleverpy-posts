@@ -13,6 +13,7 @@ import PostCard, {
 import PostsList from "../components/PostsList";
 import fetchPosts from "../services/fetchPosts";
 import { loadPosts, removePost, StoreState } from "../store/store";
+import Head from 'next/head'
 
 function ErrorMessage() {
   const dispatch = useDispatch();
@@ -55,6 +56,10 @@ export default function Home() {
 
   return (
     <CenteredLayout>
+      <Head>
+        <title>Posts</title>
+        <meta property="og:title" content="Posts" key="title" />
+      </Head>
       <main>
         <Navbar />
         <PostsList>

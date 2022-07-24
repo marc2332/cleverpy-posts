@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import { Bookmark, Star } from "react-feather";
@@ -147,6 +148,9 @@ export default function PostRoute() {
 
   return (
     <CenteredLayout>
+      <Head>
+        <title>{post?.title}</title>
+      </Head>
       <Sidebar>
         <SidebarButton
           expanded={false}

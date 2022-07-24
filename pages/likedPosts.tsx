@@ -13,6 +13,7 @@ import PostsList from "../components/PostsList";
 import { removePost, StoreState, unmarkPostAsLiked } from "../store/store";
 import FilledStar from "../components/FilledStar";
 import Link from "next/link";
+import Head from 'next/head'
 
 function ErrorMessage() {
   return (
@@ -52,6 +53,10 @@ export default function LikedPosts() {
 
   return (
     <CenteredLayout>
+       <Head>
+        <title>Liked Posts</title>
+        <meta property="og:title" content="Liked Posts" key="title" />
+      </Head>
       <main>
         <Navbar />
         <PostsList>
