@@ -13,7 +13,7 @@ import PostCard, {
 import PostsList from "../components/PostsList";
 import fetchPosts from "../services/fetchPosts";
 import { loadPosts, removePost, StoreState } from "../store/store";
-import Head from 'next/head'
+import Head from "next/head";
 
 function ErrorMessage() {
   const dispatch = useDispatch();

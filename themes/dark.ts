@@ -53,7 +53,7 @@ const DarkTheme = {
     color: "white",
     hover: {
       border: "rgb(80, 80, 80)",
-      background: "rgb(30, 30, 30)"
+      background: "rgb(30, 30, 30)",
     },
     background: "rgb(40, 40, 40)",
   },

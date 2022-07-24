@@ -27,7 +27,7 @@ export const SidebarButton = styled(Button)`
     max-width: 100%;
     border-radius: 0px;
     border: none;
-    &:hover{
+    &:hover {
       border: none;
       box-shadow: none;
     }

@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import { Bookmark, Star } from "react-feather";

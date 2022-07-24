@@ -9,8 +9,8 @@ const Avatar = styled.div`
   background: ${({ theme }) => theme.avatar.background};
   color: ${({ theme }) => theme.avatar.color};
   border: 1px solid ${({ theme }) => theme.avatar.border};
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   justify-content: center;
 `;
 
