@@ -25,7 +25,7 @@ const DropdownContainer = styled.div<{ x: number; y: number }>`
   border-radius: 14px;
   border: 1px solid ${({ theme }) => theme.dropdown.border};
   width: 200px;
-  z-index: 1;
+  z-index: 500;
   box-shadow: 0px 5px 30px 15px rgba(0, 0, 0, 0.1);
   & > * {
     margin: 3px 0px;
@@ -43,6 +43,16 @@ const DropdownContainer = styled.div<{ x: number; y: number }>`
     }
   }
 `;
+
+const DropdownFullScreenBackground = styled.div`
+  background: rgb(0,0,0,0.4);
+  position: fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  z-index: 400;
+`
 
 export interface DropdownOptions {
   x: number;
@@ -92,9 +102,15 @@ export default function Dropdown({
     };
   }, [close]);
 
+  const isSmallScreen = window.innerWidth <= 720;
+
   return (
-    <DropdownContainer x={x} y={y} ref={ref}>
+    <>
+      <DropdownContainer x={x} y={y} ref={ref}>
       {children}
+      
     </DropdownContainer>
+      {isSmallScreen && <DropdownFullScreenBackground/>}
+    </>
   );
 }
