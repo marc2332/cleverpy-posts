@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { PropsWithChildren, useEffect } from "react";
 import fetchPosts from "../services/fetchPosts";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store, { loadPosts, StoreState, Themes } from "../store/store";
+import store, { loadPosts, setEditMode, StoreState, Themes } from "../store/store";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import LightTheme from "../themes/light";
 import DarkTheme from "../themes/dark";
@@ -30,8 +30,15 @@ const GlobalStyle = createGlobalStyle`
 
 function PostsProvider({ children }: PropsWithChildren) {
   const dispatch = useDispatch();
-  const theme = useSelector((state: StoreState) => state.config.theme);
-  const selectedTheme = getTheme(theme);
+  const config = useSelector((state: StoreState) => state.config);
+  const selectedTheme = getTheme(config.theme);
+
+  useEffect(() => {
+    // Disable the Edit Mode when the user logs out
+    if(!config.userId) {
+      dispatch(setEditMode(false))
+    }
+  },[config.userId])
 
   useEffect(() => {
     fetchPosts().then((posts) => {
