@@ -9,17 +9,28 @@ const Sidebar = styled.div`
   margin-top: 215px;
   flex-direction: column;
   @media screen and (max-width: 720px) {
-    margin-top: 175px;
-    width: 60px;
+    margin: 0px;
+    position: fixed;
+    bottom: 0px;
+    height: 55px;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
   }
 `;
 
 export const SidebarButton = styled(Button)`
   margin: 3px 0px;
   @media screen and (max-width: 720px) {
-    width: 40px;
-    height: 40px;
-    padding: 4px;
+    flex: 1;
+    margin: 0px;
+    max-width: 100%;
+    border-radius: 0px;
+    border: none;
+    &:hover{
+      border: none;
+      box-shadow: none;
+    }
   }
 `;
 

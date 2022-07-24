@@ -53,6 +53,7 @@ const LightTheme = {
     color: "rgb(20, 20, 20)",
     hover: {
       border: "rgb(215, 215, 215)",
+      background: "rgb(220, 220, 220)"
     },
     background: "white",
   },

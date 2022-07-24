@@ -56,6 +56,7 @@ declare module "styled-components" {
       color: string;
       hover: {
         border: string;
+        background: string;
       };
       background: string;
     };
