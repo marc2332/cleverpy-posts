@@ -54,7 +54,7 @@ export interface ConfigState {
 const configSlice = createSlice({
   name: "config",
   initialState: {
-    theme: Themes.Light,
+    theme: Themes.Dark,
     userId: null,
     editMode: false,
   } as ConfigState,

@@ -3,7 +3,7 @@ import { Trash } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Button";
 import CenteredLayout from "../components/CenteredLayout";
-import Footer from "../components/Footer";
+import BottomBar from "../components/BottomBar";
 import Message, { MessageText } from "../components/Message";
 import Navbar from "../components/Navbar";
 import PostCard, {
@@ -88,11 +88,11 @@ export default function Home() {
           )}
         </PostsList>
         {posts && posts.length > 0 && (
-          <Footer>
+          <BottomBar>
             <Button expanded={false} onClick={scrollToTop}>
               Scroll to top
             </Button>
-          </Footer>
+          </BottomBar>
         )}
       </main>
     </CenteredLayout>

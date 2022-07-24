@@ -3,7 +3,12 @@ import type { AppProps } from "next/app";
 import { PropsWithChildren, useEffect } from "react";
 import fetchPosts from "../services/fetchPosts";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store, { loadPosts, setEditMode, StoreState, Themes } from "../store/store";
+import store, {
+  loadPosts,
+  setEditMode,
+  StoreState,
+  Themes,
+} from "../store/store";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import LightTheme from "../themes/light";
 import DarkTheme from "../themes/dark";
@@ -35,16 +40,16 @@ function PostsProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     // Disable the Edit Mode when the user logs out
-    if(!config.userId) {
-      dispatch(setEditMode(false))
+    if (!config.userId) {
+      dispatch(setEditMode(false));
     }
-  },[config.userId])
+  }, [config.userId]);
 
   useEffect(() => {
     fetchPosts().then((posts) => {
       setTimeout(() => {
         dispatch(loadPosts(posts));
-      }, 250) // Simulated latency
+      }, 250); // Simulated latency
     });
 
     // https://github.com/facebook/react/issues/17156

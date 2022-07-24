@@ -7,7 +7,7 @@ test("Should open a post", async ({ page }) => {
 
   const titles = await page.locator("h4");
 
-  const randomPost = Math.floor(Math.random() * await titles.count());
+  const randomPost = Math.floor(Math.random() * (await titles.count()));
 
   // Find a Card title
   const postTitle = titles.nth(randomPost);
@@ -38,7 +38,7 @@ test("Should log in", async ({ page }) => {
 
   // The avatar contains the first character therefore it's part of the text
   await expect(page.locator("button").nth(0)).toHaveText(
-    `${USER_ID.charAt(0)}${USER_ID}`,
+    `${USER_ID.charAt(0)}${USER_ID}`
   );
 });
 

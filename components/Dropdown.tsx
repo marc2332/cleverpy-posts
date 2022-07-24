@@ -45,14 +45,14 @@ const DropdownContainer = styled.div<{ x: number; y: number }>`
 `;
 
 const DropdownFullScreenBackground = styled.div`
-  background: rgb(0,0,0,0.4);
+  background: rgb(0, 0, 0, 0.4);
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   z-index: 400;
-`
+`;
 
 export interface DropdownOptions {
   x: number;
@@ -71,7 +71,7 @@ export default function Dropdown({
   useEffect(() => {
     const isTouchDevice = "ontouchstart" in document.documentElement;
 
-    const outsideClickListener = (ev: Event) => {
+    const outsideClickListener = (ev: MouseEvent) => {
       if (ref.current && ev.target) {
         if (!ref.current.contains(ev.target as HTMLElement)) {
           close();
@@ -107,10 +107,9 @@ export default function Dropdown({
   return (
     <>
       <DropdownContainer x={x} y={y} ref={ref}>
-      {children}
-      
-    </DropdownContainer>
-      {isSmallScreen && <DropdownFullScreenBackground/>}
+        {children}
+      </DropdownContainer>
+      {isSmallScreen && <DropdownFullScreenBackground />}
     </>
   );
 }

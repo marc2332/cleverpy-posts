@@ -29,9 +29,7 @@ export function AccountDropdown({
         Sign out
       </ButtonWithIcon>
       <Link href="https://github.com/marc2332/cleverpy-posts/issues">
-        <Button expanded={true}>
-          Report Bugs
-        </Button>
+        <Button expanded={true}>Report Bugs</Button>
       </Link>
     </Dropdown>
   );

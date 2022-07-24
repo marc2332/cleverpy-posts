@@ -55,13 +55,11 @@ export default function Navbar() {
   const theme = useTheme();
 
   // Dropdown configuration
-  const [dropdown, setDropdown] = useState<
-    null | {
-      x: number;
-      y: number;
-      kind: "login" | "account";
-    }
-  >(null);
+  const [dropdown, setDropdown] = useState<null | {
+    x: number;
+    y: number;
+    kind: "login" | "account";
+  }>(null);
 
   const isNotHome = router.pathname !== "/";
 
@@ -90,7 +88,7 @@ export default function Navbar() {
 
   function showDropdown(
     e: React.MouseEvent<HTMLButtonElement>,
-    kind: "login" | "account",
+    kind: "login" | "account"
   ) {
     const data = e.currentTarget.getBoundingClientRect();
     setDropdown({
@@ -108,60 +106,63 @@ export default function Navbar() {
     <NavbarContainer>
       <BigTitle onClick={goBack}>Posts</BigTitle>
       <ButtonsList>
-        {config.userId
-          ? (
-            <LoginButton
-              expanded={true}
-              onClick={(e) => showDropdown(e, "account")}
-              title={`Logged as ${config.userId}`}
-            >
-              <Avatar className="avatar">{config.userId.charAt(0)}</Avatar>
-              {config.userId}
-            </LoginButton>
-          )
-          : (
-            <LoginButton
-              expanded={false}
-              onClick={(e) => showDropdown(e, "login")}
-              title="Click to log into your account"
-            >
-              <LogIn color={theme.icon.color} />
-              Login
-            </LoginButton>
+        {config.userId ? (
+          <LoginButton
+            expanded={true}
+            onClick={(e) => showDropdown(e, "account")}
+            title={`Logged as ${config.userId}`}
+          >
+            <Avatar className="avatar">{config.userId.charAt(0)}</Avatar>
+            {config.userId}
+          </LoginButton>
+        ) : (
+          <LoginButton
+            expanded={false}
+            onClick={(e) => showDropdown(e, "login")}
+            title="Click to log into your account"
+          >
+            <LogIn color={theme.icon.color} />
+            Login
+          </LoginButton>
+        )}
+        <Button
+          expanded={false}
+          onClick={themeOnClick}
+          title="Click to toggle theme"
+        >
+          {config.theme === Themes.Dark ? (
+            <Sun color={theme.icon.color} />
+          ) : (
+            <Moon color={theme.icon.color} />
           )}
-        <Button expanded={false} onClick={themeOnClick} title="Click to toggle theme">
-          {config.theme === Themes.Dark
-            ? <Sun color={theme.icon.color} />
-            : <Moon color={theme.icon.color} />}
         </Button>
-        {config.userId &&
-          (
-            <Button expanded={false} onClick={toggleEditMode} title={`Click to ${config.editMode ? "Disable" : "Enable"} edit mode`}>
-              {config.editMode
-                ? <X color={theme.icon.color} />
-                : <Edit color={theme.icon.color} />}
-            </Button>
-          )}
+        {config.userId && (
+          <Button
+            expanded={false}
+            onClick={toggleEditMode}
+            title={`Click to ${
+              config.editMode ? "Disable" : "Enable"
+            } edit mode`}
+          >
+            {config.editMode ? (
+              <X color={theme.icon.color} />
+            ) : (
+              <Edit color={theme.icon.color} />
+            )}
+          </Button>
+        )}
       </ButtonsList>
-      {dropdown
-        ? (
-          dropdown.kind === "login"
-            ? (
-              <LoginDropdown
-                {...dropdown}
-                close={closeDropdown}
-                logIn={logIn}
-              />
-            )
-            : (
-              <AccountDropdown
-                {...dropdown}
-                close={closeDropdown}
-                logOut={logOut}
-              />
-            )
+      {dropdown ? (
+        dropdown.kind === "login" ? (
+          <LoginDropdown {...dropdown} close={closeDropdown} logIn={logIn} />
+        ) : (
+          <AccountDropdown
+            {...dropdown}
+            close={closeDropdown}
+            logOut={logOut}
+          />
         )
-        : null}
+      ) : null}
     </NavbarContainer>
   );
 }
