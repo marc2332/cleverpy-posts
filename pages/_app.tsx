@@ -35,7 +35,9 @@ function PostsProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     fetchPosts().then((posts) => {
-      dispatch(loadPosts(posts));
+      setTimeout(() => {
+        dispatch(loadPosts(posts));
+      }, 250) // Simulated latency
     });
 
     // https://github.com/facebook/react/issues/17156
