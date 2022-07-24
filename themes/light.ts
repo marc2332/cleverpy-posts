@@ -58,7 +58,7 @@ const LightTheme = {
     border: "rgb(230, 230, 230)",
   },
   input: {
-    background: "white",
+    background: "rgb(240, 240, 240)",
     color: "rgb(20, 20, 20)",
     border: "rgb(230, 230, 230)",
     focus: {

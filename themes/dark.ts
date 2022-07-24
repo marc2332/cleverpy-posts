@@ -58,11 +58,11 @@ const DarkTheme = {
     border: "rgb(35, 35, 35)",
   },
   input: {
-    background: "rgb(40, 40, 40)",
+    background: "rgb(20, 20, 20)",
     color: "white",
-    border: "rgb(45, 45, 45)",
+    border: "rgb(65, 65, 65)",
     focus: {
-      border: "rgb(80, 80, 80)",
+      border: "rgb(85, 85, 85)",
     },
   },
 };

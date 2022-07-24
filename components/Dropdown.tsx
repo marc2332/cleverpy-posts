@@ -77,10 +77,16 @@ export default function Dropdown({
       }
     };
 
+    const scrollListener = () => {
+      close();
+    };
+
+    window.addEventListener("scroll", scrollListener);
     window.addEventListener("resize", resizeListener);
     window.addEventListener("mouseup", outsideClickListener);
 
     return () => {
+      window.removeEventListener("scroll", scrollListener);
       window.removeEventListener("resize", resizeListener);
       window.removeEventListener("mouseup", outsideClickListener);
     };
