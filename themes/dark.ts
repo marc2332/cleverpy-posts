@@ -25,6 +25,10 @@ const DarkTheme = {
       color: "rgb(200, 200, 200)",
     },
   },
+  smallTitle: {
+    color: "white",
+    border: "rgb(35, 35, 35)"
+  },
   card: {
     background: "rgb(25, 25, 25)",
     title: {

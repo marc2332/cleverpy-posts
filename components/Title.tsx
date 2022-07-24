@@ -19,7 +19,9 @@ export const BigTitle = styled.h1`
 `;
 
 export const SmallTitle = styled.h2`
-  color: ${(theme) => theme.theme.title.color};
+  color: ${(theme) => theme.theme.smallTitle.color};
   font-size: 30px;
   margin: 25px 0px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid ${(theme) => theme.theme.smallTitle.border};
 `;

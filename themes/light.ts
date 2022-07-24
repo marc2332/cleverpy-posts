@@ -25,6 +25,10 @@ const LightTheme = {
       color: "rgb(80, 80, 80)",
     },
   },
+  smallTitle: {
+    color: "rgb(50, 50, 50)",
+    border: "rgb(215, 215, 215)"
+  },
   card: {
     background: "white",
     title: {

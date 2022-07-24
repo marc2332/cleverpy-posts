@@ -28,6 +28,10 @@ declare module "styled-components" {
         color: string;
       };
     };
+    smallTitle: {
+      color: string;
+      border: string;
+    };
     card: {
       background: string;
       title: {
