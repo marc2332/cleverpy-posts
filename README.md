@@ -1,19 +1,32 @@
+# Cleverpy Posts
+
 Deployed at: https://cleverpy-posts-marc.vercel.app/
 
-### Installing dependencies
+## ✂️ Made using
+
+- TypeScript
+- NextJS
+- React
+- Styled-components
+- Feather Icons
+- Redux
+- Playwright (for e2e testing)
+- Eslint
+- Prettier
+
+## 🧰 Installing dependencies
 
 ```shell
 yarn
 ```
 
-### Running locally
+## ⚙️ Running locally
 
 ```shell
 yarn dev
 ```
 
-
-### Running tests
+## 🧪 Running tests
 
 ```shell
 yarn test
