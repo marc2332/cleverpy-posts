@@ -11,3 +11,10 @@ yarn
 ```shell
 yarn dev
 ```
+
+
+### Running tests
+
+```shell
+yarn test
+```

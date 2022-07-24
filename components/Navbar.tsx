@@ -65,7 +65,7 @@ export default function Navbar() {
 
   function goBack() {
     if (isNotHome) {
-      router.back();
+      router.push("/")
     }
   }
 
