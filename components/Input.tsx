@@ -17,9 +17,4 @@ const Input = styled.input`
   }
 `;
 
-export const InputLabel = styled.span`
-  font-size: 14px;
-  margin-left: 1px;
-`;
-
 export default Input;

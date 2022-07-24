@@ -26,6 +26,9 @@ const ButtonsList = styled.nav`
   display: flex;
   align-items: end;
   justify-content: space-between;
+  & > button {
+    margin: 0px 5px;
+  }
 `;
 
 const LoginButton = styled(Button)`

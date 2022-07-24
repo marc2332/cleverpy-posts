@@ -1,7 +1,8 @@
 import Button from "./Button";
 import React, { useState } from "react";
 import Dropdown, { DropdownOptions } from "./Dropdown";
-import Input, { InputLabel } from "./Input";
+import Input from "./Input";
+import Label from "./Label";
 
 interface LoginDropdownOptions extends DropdownOptions {
   logIn: (userId: string) => void;
@@ -23,9 +24,9 @@ export function LoginDropdown({ x, y, close, logIn }: LoginDropdownOptions) {
 
   return (
     <Dropdown x={x} y={y} close={close}>
-      <InputLabel>User</InputLabel>
+      <Label>User</Label>
       <Input placeholder="UserID" onChange={onUserIdChanged}></Input>
-      <InputLabel>Password</InputLabel>
+      <Label>Password</Label>
       <Input placeholder="Password"></Input>
       <Button expanded={true} onClick={logInOnClick}>
         Log in

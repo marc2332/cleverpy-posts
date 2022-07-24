@@ -43,6 +43,7 @@ function PostsProvider({ children }: PropsWithChildren) {
     if (!config.userId) {
       dispatch(setEditMode(false));
     }
+    /*eslint-disable react-hooks/exhaustive-deps*/
   }, [config.userId]);
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import CenteredLayout from "../../components/CenteredLayout";
 import EditArea from "../../components/EditArea";
+import Label from "../../components/Label";
 import Message, { MessageText } from "../../components/Message";
 import Navbar from "../../components/Navbar";
 import PostContent from "../../components/PostContent";
@@ -46,6 +47,19 @@ export default function PostRoute() {
     }
   }, [post]);
 
+  function titleEdited(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setEditedPost((post) => {
+      if (post) {
+        return {
+          ...post,
+          title: e.target.value,
+        };
+      } else {
+        return post;
+      }
+    });
+  }
+
   function contentEdited(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setEditedPost((post) => {
       if (post) {
@@ -69,18 +83,31 @@ export default function PostRoute() {
     <>
       <SmallTitle>{post?.title}</SmallTitle>
       <i>By {post?.userId}</i>
-      {isEditMode ? (
-        <>
-          <EditArea defaultValue={editedPost?.body} onChange={contentEdited} />
-          <Button expanded={true} onClick={saveChanges}>
-            Save
-          </Button>
-        </>
-      ) : (
-        <PostContent>{post?.body}</PostContent>
-      )}
+      <PostContent>{post?.body}</PostContent>
     </>
   );
+
+  if (isEditMode) {
+    content = (
+      <>
+        <Label>Title</Label>
+        <EditArea
+          defaultValue={editedPost?.title}
+          onChange={titleEdited}
+          height="55px"
+        />
+        <Label>Content</Label>
+        <EditArea
+          defaultValue={editedPost?.body}
+          onChange={contentEdited}
+          height="30%"
+        />
+        <Button expanded={true} onClick={saveChanges}>
+          Save
+        </Button>
+      </>
+    );
+  }
 
   // Post is not found
   if (state == PostState.Loaded && !post) {
