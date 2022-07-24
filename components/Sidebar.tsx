@@ -4,12 +4,13 @@ import Button, { ButtonWithIcon } from "./Button";
 const Sidebar = styled.div`
   display: flex;
   align-items: center;
-  width: 60px;
+  width: 90px;
   height: 100vh;
   margin-top: 215px;
   flex-direction: column;
-  @media screen and (min-width: 720px) {
-    width: 90px;
+  @media screen and (max-width: 720px) {
+    margin-top: 175px;
+    width: 60px;
   }
 `;
 

@@ -14,6 +14,7 @@ export const BigTitle = styled.h1`
     color: ${(theme) => theme.theme.title.hover.color};
   }
   @media screen and (max-width: 720px) {
+    margin: 40px 0px;
     font-size: 50px;
   }
 `;
@@ -24,4 +25,8 @@ export const SmallTitle = styled.h2`
   margin: 25px 0px;
   padding-bottom: 20px;
   border-bottom: 1px solid ${(theme) => theme.theme.smallTitle.border};
+  @media screen and (max-width: 720px) {
+    font-size: 20px;
+    margin-right: 15px;
+  }
 `;
