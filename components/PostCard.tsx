@@ -68,7 +68,7 @@ export default function PostCard({
 }: CardOptions) {
   return (
     <Link href={`/post/${id}`} scroll={false}>
-      <Card>
+      <Card title={title}>
         <CardTitle>{title.split(" ").slice(0, 7).join(" ")}</CardTitle>
         <CardBody>{body.split(" ").slice(0, 12).join(" ")}</CardBody>
         <CardAuthor>By {userId}</CardAuthor>

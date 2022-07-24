@@ -113,6 +113,7 @@ export default function Navbar() {
             <LoginButton
               expanded={true}
               onClick={(e) => showDropdown(e, "account")}
+              title={`Logged as ${config.userId}`}
             >
               <Avatar className="avatar">{config.userId.charAt(0)}</Avatar>
               {config.userId}
@@ -122,19 +123,20 @@ export default function Navbar() {
             <LoginButton
               expanded={false}
               onClick={(e) => showDropdown(e, "login")}
+              title="Click to log into your account"
             >
               <LogIn color={theme.icon.color} />
               Login
             </LoginButton>
           )}
-        <Button expanded={false} onClick={themeOnClick}>
+        <Button expanded={false} onClick={themeOnClick} title="Click to toggle theme">
           {config.theme === Themes.Dark
             ? <Sun color={theme.icon.color} />
             : <Moon color={theme.icon.color} />}
         </Button>
         {config.userId &&
           (
-            <Button expanded={false} onClick={toggleEditMode}>
+            <Button expanded={false} onClick={toggleEditMode} title={`Click to ${config.editMode ? "Disable" : "Enable"} edit mode`}>
               {config.editMode
                 ? <X color={theme.icon.color} />
                 : <Edit color={theme.icon.color} />}
