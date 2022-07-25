@@ -31,6 +31,7 @@ export default function PostRoute() {
     (state: StoreState) => state.config.likedPosts
   );
   const isEditMode = useSelector((state: StoreState) => state.config.editMode);
+  const userId = useSelector((state: StoreState) => state.config.userId);
   const router = useRouter();
   const dispatch = useDispatch();
   const [editedPost, setEditedPost] = useState<Post | null>(null);
@@ -151,17 +152,22 @@ export default function PostRoute() {
       <Head>
         <title>{post?.title}</title>
       </Head>
-      <Sidebar>
-        <SidebarButton
-          expanded={false}
-          onClick={isPostLiked ? unlikePost : likePost}
-        >
-          {isPostLiked ? <FilledStar /> : <Star />}
-        </SidebarButton>
-        <SidebarButton expanded={false} onClick={() => alert("Not supported!")}>
-          <Bookmark />
-        </SidebarButton>
-      </Sidebar>
+      {userId && (
+        <Sidebar>
+          <SidebarButton
+            expanded={false}
+            onClick={isPostLiked ? unlikePost : likePost}
+          >
+            {isPostLiked ? <FilledStar /> : <Star />}
+          </SidebarButton>
+          <SidebarButton
+            expanded={false}
+            onClick={() => alert("Not supported!")}
+          >
+            <Bookmark />
+          </SidebarButton>
+        </Sidebar>
+      )}
       <main>
         <Navbar />
         {content}
