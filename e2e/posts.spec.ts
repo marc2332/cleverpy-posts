@@ -85,7 +85,7 @@ test("Should display a liked post", async ({ page }) => {
   await page.locator("button").nth(0).click();
 
   // Open the account dropdown
-  await page.locator(`text=${`${USER_ID.charAt(0)}${USER_ID}`}`).click();
+  await page.locator("button").nth(2).click();
 
   // Open the liked post route
   await page.locator("text=Liked Posts").click();
